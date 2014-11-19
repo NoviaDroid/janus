@@ -1,0 +1,66 @@
+call janus#disable_plugin('vim-trailing-whitespace')
+call janus#disable_plugin('ZoomWin')
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#eclim#enabled = 1
+let g:airline_enable_branch=1
+"let g:airline_theme="solarized"
+let g:airline_enable_syntastic=1
+let g:airline_detect_paste=1
+" powerline symbols
+"let g:airline_left_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = '|'
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+let g:EclimCompletionMethod = 'omnifunc'
+let g:SuperTabDefaultCompletionType = 'context'
+let NERDTreeShowBookmarks = 1
+let g:tagbar_iconchars = ['+', '-']
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1 
+
+"ctrlp speed up
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+
+" Do not clear filenames cache, to improve CtrlP startup
+" You can manualy clear it by <F5>
+let g:ctrlp_clear_cache_on_exit = 0
+
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+set grepprg=ag\ --nogroup\ --nocolor
+" Use ag in CtrlP for listing files, lightning fast and respects .gitignore
+let g:ctrlp_user_command = 'ag %s --files-with-matches --hidden -g "" --ignore "\.git$\|\.hg$\|\.svn$\|\.pyc$"'
+endif
+
+augroup nonvim
+   au!
+   au BufRead *.png,*.bmp,*.jpg,*.pdf,*.gif,*.xls*,*.scpt sil exe "!open " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
+   " au BufRead *.ppt*,*.doc*,*.rtf sil exe "!open " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
+   au BufRead *.ppt*,*.doc*,*.rtf let g:output_pdf = shellescape(expand("%:r") . ".pdf")
+   au BufRead *.ppt*,*.doc*,*.rtf sil exe "!$HOME/.bin/pdf " . shellescape(expand("%:p"))
+   au BufRead *.ppt*,*.doc*,*.rtf sil exe "!open " . g:output_pdf | bd | let &ft=&ft | redraw!
+augroup end
+
+let g:ycm_key_list_select_completion = [‘<C-TAB>’, ‘<Down>’]
+let g:ycm_key_list_previous_completion = [‘<C-S-TAB>’, ‘<Up>’]
+let g:SuperTabDefaultCompletionType = ‘<C-Tab>’

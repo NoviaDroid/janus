@@ -1,0 +1,50 @@
+set encoding=utf-8
+set guifont=Ubuntu\ Mono\ derivative\ Powerline:h16
+set background=dark
+set macmeta
+"color jelleybeans+
+colorscheme desert
+set guioptions-=L
+set guioptions-=R
+set guioptions-=l
+set guioptions-=r
+"set lines=999 columns=999
+filetype plugin indent on
+set laststatus=2
+set shiftwidth=4
+set ai
+set si
+"Java anonymous classes. Sometimes, you have to use them.
+set cinoptions+=j1
+
+let mapleader=","
+map <leader>tm :VimShell -toggle -splite -popup<cr>
+map <leader>zm :MaximizerToggle!<cr>
+map <leader>io :JavaImportOrganize<cr>
+map <leader>sc :JavaSearchContext<cr>
+
+imap <D-1> <ESC>:JavaCorrect<cr>
+imap <D-R> <ESC>:CtrlP<cr>
+imap <D-F> <ESC>:JavaFormat<cr>i
+
+nmap <D-1> :JavaCorrect<cr>
+nmap <D-R> :CtrlP<cr>
+nmap <D-F> :JavaFormat<cr>
+
+imap <D-N> <ESC>:wincmd w<cr>
+imap <D-J> <ESC>:wincmd j<cr>
+imap <D-K> <ESC>:wincmd k<cr>
+imap <D-H> <ESC>:wincmd h<cr>
+imap <D-L> <ESC>:wincmd l<cr>
+
+nmap <D-N> :wincmd w<cr>
+nmap <D-J> :wincmd j<cr>
+nmap <D-K> :wincmd k<cr>
+nmap <D-H> :wincmd h<cr>
+nmap <D-L> :wincmd l<cr>
+
+nmap <D-d> <C-d>
+nmap <D-u> <C-u>
+
+set nocompatible
+set modifiable
